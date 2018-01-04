@@ -24,6 +24,12 @@ For the Vault API check, I have created a dummy entry using the below command.
 vault write secret/prometheus password=prometheus username=prometheus
 ```
 
+For the Vault Hash check, I am checking the md5sum for the vault folder and compairing it to the one generated everytime I scrape. The initial md5sum can be taken using the command:
+
+```
+find /opt/vault/var/store/logical  -type f -exec md5sum {} + | md5sum | awk '{print $1}'
+```
+
 The script requires the following arguments:
   1) Client certificate of vault server.
   2) Client decrypted key of vault server.
